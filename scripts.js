@@ -68,11 +68,19 @@ function startTimer() {
     }, 1000); // 1000 milliseconds = 1 second
 }
 
-
-
 setInterval(GetTwitchTitle, 500);
 function GetTwitchTitle() {
   client.on('Twitch.StreamUpdate', (response) => {
   console.log('Event data:', response.data);
     });
+}
+
+setInterval(fetchTitle, 1000);
+async function fetchTitle() {
+//const response = await client.doAction("2fa3a04c-0e50-4486-bda8-ba8dfa0c4187");
+//const twitchTitle = response.data.StreamTitle;
+//console
+const response = await client.getGlobal("twitchTitle");
+const twitchTitle = response.value;
+console.log("Fetched Twitch Title:", twitchTitle);
 }
