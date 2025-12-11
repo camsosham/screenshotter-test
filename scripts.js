@@ -47,3 +47,23 @@ function SetConnectionStatus(connected) {
 		statusContainer.style.opacity = 1;
     }
 }
+
+// Timer Countdown Function
+function startTimer() {
+    let count = 4;
+    let timer;
+    const countdownElement = document.getElementById('countdown');
+    timer = setInterval(function() {
+        count--;
+        countdownElement.textContent = count;
+
+        if (count < 1) {
+            clearInterval(timer);
+            count = ' ';
+            countdownElement.textContent = count;
+            // Perform the desired action here after the countdown ends
+            client.callAction("Overlay", "Show Overlay", { OverlayName: overlay });
+
+        }
+    }, 1000); // 1000 milliseconds = 1 second
+}
