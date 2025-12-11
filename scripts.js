@@ -67,3 +67,12 @@ function startTimer() {
         }
     }, 1000); // 1000 milliseconds = 1 second
 }
+
+
+
+setInterval(GetTwitchTitle, 500);
+function GetTwitchTitle() {
+  client.on('Twitch.StreamUpdate', (response) => {
+  console.log('Event data:', response.data);
+    });
+}

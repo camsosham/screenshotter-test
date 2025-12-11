@@ -23,11 +23,11 @@ html {
 
 timer-container {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 50vh;
 }
 
 #countdown {
-    text-align: centers;
+    text-align: center;
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 20px;
