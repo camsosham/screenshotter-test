@@ -79,7 +79,7 @@ function startTimer() {
 // GRABS TWITCH TITLE FROM STREAMER.BOT GLOBAL VARIABLE //
 //////////////////////////////////////////////////////////
 
-setInterval(fetchTitle, 3000);
+setInterval(fetchTitle, 30000);
 async function fetchTitle() {
 	const response = await client.getGlobal("twitchTitle", persisted = true);
 	console.log("Fetched Twitch Title:", response.variable.value);
@@ -88,14 +88,18 @@ async function fetchTitle() {
 /////////////////////////////////////
 // SUBSCRIBES TO OBS SCENE CHANGES //
 /////////////////////////////////////
-
+let currentScene = "";
 client.on('Obs.SceneChanged', ({ event, data }) => {
-  const currentScene = data.scene.sceneName;
+  currentScene = data.scene.sceneName;
   console.log('Current Scene:', currentScene);
+
+  // Check if the current scene matches the specified end scene
+  // and starts the timer if it does
+  if (currentScene === endScene) {
+	startTimer();
+	console.log("End scene reached, starting timer.");
+  }
 });
 
 
-if (currentScene == endScene) {
-	startTimer();
-	console.log("End scene reached, starting timer.");
-}
+
