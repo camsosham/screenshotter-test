@@ -1,6 +1,6 @@
-////////////////////////
-//CONNECT STREAMER.BOT//
-////////////////////////
+//////////////////////////////////////
+// CONNECTS STREAMER.BOT TO WEBPAGE //
+//////////////////////////////////////
 
 // Parse URL Parameters
 const queryString = window.location.search;
@@ -20,6 +20,7 @@ const client = new StreamerbotClient({
 		console.log(`Streamer.bot successfully connected to ${sbServerAddress}:${sbServerPort}`)
 		console.debug(data);
 		SetConnectionStatus(true);
+		fetchTitle();
 	},
 
 	onDisconnect: () => {
@@ -28,7 +29,10 @@ const client = new StreamerbotClient({
 	}
 });
 
-// Streamer.bot Connection Status Indicator Function
+///////////////////////////////////////////
+// PERFORMS CONNECTION STATUS UI UPDATES //
+///////////////////////////////////////////
+
 function SetConnectionStatus(connected) {
 	let statusContainer = document.getElementById("statusContainer");
 	if (connected) {
@@ -48,7 +52,10 @@ function SetConnectionStatus(connected) {
     }
 }
 
-// Timer Countdown Function
+//////////////////////////////////////
+// CREATES TIMER COUNTDOWN FUNCITON //
+//////////////////////////////////////
+
 function startTimer() {
     let count = 4;
     let timer;
@@ -68,19 +75,15 @@ function startTimer() {
     }, 1000); // 1000 milliseconds = 1 second
 }
 
-setInterval(GetTwitchTitle, 500);
-function GetTwitchTitle() {
-  client.on('Twitch.StreamUpdate', (response) => {
-  console.log('Event data:', response.data);
-    });
-}
+//setInterval(GetTwitchTitle, 500);
+//function GetTwitchTitle() {
+//  client.on('Twitch.StreamUpdate', (response) => {
+//  console.log('Event data:', response.data);
+//  });
+//}
 
-setInterval(fetchTitle, 1000);
+setInterval(fetchTitle, 3000);
 async function fetchTitle() {
-//const response = await client.doAction("2fa3a04c-0e50-4486-bda8-ba8dfa0c4187");
-//const twitchTitle = response.data.StreamTitle;
-//console
-const response = await client.getGlobal("twitchTitle");
-const twitchTitle = response.value;
-console.log("Fetched Twitch Title:", twitchTitle);
+	const response = await client.getGlobal("twitchTitle", persisted = true);
+	console.log("Fetched Twitch Title:", response.variable.value);
 }
