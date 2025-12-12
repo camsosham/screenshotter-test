@@ -106,6 +106,7 @@ client.on('Obs.SceneChanged', ({ event, data }) => {
 
 function coverScreenWhite() {
         const overlay = document.getElementById("overlay");
+		console.log(overlay);
         overlay.style.position = "fixed";
         overlay.style.top = "0";
         overlay.style.left = "0";
@@ -113,12 +114,11 @@ function coverScreenWhite() {
         overlay.style.height = "100vh";
         overlay.style.backgroundColor = "#d8d8d8";
         overlay.style.zIndex = "999999"; // above everything
-         overlay.id = "whiteOverlay";
-        document.body.appendChild(overlay);
     }
 
 function clearScreenWhite() {
         const overlay = document.getElementById("overlay");
+		console.log(overlay);
         overlay.style.position = "fixed";
         overlay.style.top = "0";
         overlay.style.left = "0";
@@ -126,7 +126,5 @@ function clearScreenWhite() {
         overlay.style.height = "100vh";
         overlay.style.backgroundColor = "transparent";
         overlay.style.zIndex = "999999"; // above everything
-         overlay.id = "whiteOverlay";
-        document.body.appendChild(overlay);
     }
 
