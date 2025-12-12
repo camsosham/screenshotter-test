@@ -68,10 +68,9 @@ function startTimer() {
             clearInterval(timer);
             count = ' ';
             countdownElement.textContent = count;
-            // Perform the desired action here after the countdown ends
-            client.callAction("Overlay", "Show Overlay", { OverlayName: overlay });
-
-        }
+            
+		    coverScreenWhite();
+		}
     }, 1000); // 1000 milliseconds = 1 second
 }
 
@@ -88,6 +87,7 @@ async function fetchTitle() {
 /////////////////////////////////////
 // SUBSCRIBES TO OBS SCENE CHANGES //
 /////////////////////////////////////
+
 let currentScene = "";
 client.on('Obs.SceneChanged', ({ event, data }) => {
   currentScene = data.scene.sceneName;
@@ -96,10 +96,37 @@ client.on('Obs.SceneChanged', ({ event, data }) => {
   // Check if the current scene matches the specified end scene
   // and starts the timer if it does
   if (currentScene === endScene) {
-	startTimer();
 	console.log("End scene reached, starting timer.");
+	startTimer();
+  }
+  else {
+	clearScreenWhite();		
   }
 });
 
+function coverScreenWhite() {
+        const overlay = document.getElementById("overlay");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.backgroundColor = "#d8d8d8";
+        overlay.style.zIndex = "999999"; // above everything
+         overlay.id = "whiteOverlay";
+        document.body.appendChild(overlay);
+    }
 
+function clearScreenWhite() {
+        const overlay = document.getElementById("overlay");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.backgroundColor = "transparent";
+        overlay.style.zIndex = "999999"; // above everything
+         overlay.id = "whiteOverlay";
+        document.body.appendChild(overlay);
+    }
 

@@ -23,14 +23,15 @@ html {
 
 timer-container {
     text-align: center;
-    margin-top: 50vh;
 }
 
 #countdown {
-    text-align: center;
-    font-size: 48px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
 #statusContainer {
@@ -45,6 +46,11 @@ timer-container {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+#createFlash {
+	width: 1000000000000vw;
+	height: 100vh;
 }
 
 .statusConnected {
