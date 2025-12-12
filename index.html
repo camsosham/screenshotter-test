@@ -8,12 +8,26 @@
     <script type="text/javascript" src="https://unpkg.com/@streamerbot/client/dist/streamerbot-client.js"></script>
 </head>
 <body>
+     <style>
+        body {
+            margin: 0;
+            display: flex;
+        }
+
+        #widgetContainer {
+            width: 100vw;
+            height: 100vh;
+            border-width: 0px;
+        }
+    </style>
     <div id="statusContainer">Connecting...</div>
     <div class="timer-container">
         <div id="countdown"></div>
         <button onclick="startTimer()">Start Timer</button>
     </div>
+    <iframe id="widgetContainer"></iframe>
+    <script src="./scripts.js"></script>
 </body>
 
-<script src="./scripts.js"></script>
+
 </html>

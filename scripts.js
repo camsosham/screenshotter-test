@@ -75,15 +75,27 @@ function startTimer() {
     }, 1000); // 1000 milliseconds = 1 second
 }
 
-//setInterval(GetTwitchTitle, 500);
-//function GetTwitchTitle() {
-//  client.on('Twitch.StreamUpdate', (response) => {
-//  console.log('Event data:', response.data);
-//  });
-//}
+//////////////////////////////////////////////////////////
+// GRABS TWITCH TITLE FROM STREAMER.BOT GLOBAL VARIABLE //
+//////////////////////////////////////////////////////////
 
 setInterval(fetchTitle, 3000);
 async function fetchTitle() {
 	const response = await client.getGlobal("twitchTitle", persisted = true);
 	console.log("Fetched Twitch Title:", response.variable.value);
+}
+
+/////////////////////////////////////
+// SUBSCRIBES TO OBS SCENE CHANGES //
+/////////////////////////////////////
+
+client.on('Obs.SceneChanged', ({ event, data }) => {
+  const currentScene = data.scene.sceneName;
+  console.log('Current Scene:', currentScene);
+});
+
+
+if (currentScene == endScene) {
+	startTimer();
+	console.log("End scene reached, starting timer.");
 }
