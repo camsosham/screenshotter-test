@@ -1,0 +1,3 @@
+[submodule "/lcdfont"]
+    path = lcdfont
+    url = https://github.com/camsosham/screenshotter-test/tree/main/lcdfont.git
