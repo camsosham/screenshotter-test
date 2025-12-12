@@ -1,6 +1,6 @@
 @font-face {
     font-family: "LCD-2N"; /* Choose a name for your font */
-    src: url("../fonts/LCDWinTT/LCD-2N___.TTF") format("truetype"); /* Specify the correct path and format */
+    src: url("../fonts/LCD-2N___.TTF") format("truetype"); /* Specify the correct path and format */
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Recommended for better performance/user experience */
