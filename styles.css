@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "LCD-2N"; /* Choose a name for your font */
+    src: url("../fonts/LCDWinTT/LCD-2N___.TTF") format("truetype"); /* Specify the correct path and format */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Recommended for better performance/user experience */
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -30,8 +38,9 @@ timer-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+	font-family: 'LCD-2N', sans-serif;
     font-size: 100px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 #statusContainer {
@@ -85,4 +94,4 @@ timer-container {
 	100% {
 		background-color: #D12025;
 	}
-}s
+}
