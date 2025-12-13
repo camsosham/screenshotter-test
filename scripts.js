@@ -49,7 +49,7 @@ function SetConnectionStatus(connected) {
 		statusContainer.innerText = "Connecting...";
 		statusContainer.style.transition = "";
 		statusContainer.style.opacity = 1;
-    }
+  }
 }
 
 //////////////////////////////////////
@@ -61,18 +61,20 @@ function startTimer() {
     let timer;
     const countdownElement = document.getElementById('countdown');
     timer = setInterval(function() {
-        count--;
-        countdownElement.textContent = count;
+      count--;
+      countdownElement.textContent = count;
 
-        if (count < 1) {
-            clearInterval(timer);
-            count = ' ';
-            countdownElement.textContent = count;
+      if (count < 1) {
+        clearInterval(timer);
+        count = ' ';
+        countdownElement.textContent = count;
             
 		    coverScreenWhite();
-		}
+      }
     }, 1000); // 1000 milliseconds = 1 second
 }
+
+
 
 //////////////////////////////////////////////////////////
 // GRABS TWITCH TITLE FROM STREAMER.BOT GLOBAL VARIABLE //
@@ -82,6 +84,22 @@ setInterval(fetchTitle, 30000);
 async function fetchTitle() {
 	const response = await client.getGlobal("twitchTitle", persisted = true);
 	console.log("Fetched Twitch Title:", response.variable.value);
+
+  const dateContainer2 = document.getElementById('dateContainer2');
+  dateContainer2.innerText = "12/12/2025";
+
+    const dateContainer = document.getElementById('dateContainer');
+  dateContainer.innerText = "12/12/2025";
+
+  const titleContainer2 = document.getElementById('titleContainer2');
+  titleContainer2.innerText = response.variable.value;
+
+  const titleContainer = document.getElementById('titleContainer');
+  titleContainer.innerText = response.variable.value;
+
+ 
+
+//titleContainer.style.background = "#000000";
 }
 
 /////////////////////////////////////
@@ -99,32 +117,31 @@ client.on('Obs.SceneChanged', ({ event, data }) => {
 	console.log("End scene reached, starting timer.");
 	startTimer();
   }
-  else {
-	clearScreenWhite();		
-  }
+  //else {
+	//clearScreenWhite();		
+  //}
 });
 
 function coverScreenWhite() {
-        const overlay = document.getElementById("overlay");
-		console.log(overlay);
-        overlay.style.position = "fixed";
-        overlay.style.top = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100vw";
-        overlay.style.height = "100vh";
-        overlay.style.backgroundColor = "#d8d8d8";
-        overlay.style.zIndex = "999999"; // above everything
-    }
+  const overlay = document.getElementById("overlay");
+	console.log(overlay);
+
+  overlay.style.visibility = "visible";
+  overlay.style.opacity = "1";
+  overlay.style.transition = "opacity 0ms ease-in, visibility 0ms ease-in 0ms";
+  overlay.style.transitionDelay = "0ms";
+
+  setTimeout(clearScreenWhite, 100)
+}
 
 function clearScreenWhite() {
-        const overlay = document.getElementById("overlay");
-		console.log(overlay);
-        overlay.style.position = "fixed";
-        overlay.style.top = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100vw";
-        overlay.style.height = "100vh";
-        overlay.style.backgroundColor = "transparent";
-        overlay.style.zIndex = "999999"; // above everything
-    }
+  const overlay = document.getElementById("overlay");
+  console.log(overlay);
+
+  
+  overlay.style.visibility = "hidden";
+  overlay.style.opacity = "0";
+  overlay.style.transition = "opacity 1250ms ease, visibility 0ms ease 1250ms";
+  
+}
 
