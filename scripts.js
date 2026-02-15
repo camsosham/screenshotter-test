@@ -7,7 +7,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 const sbServerAddress = urlParams.get("address") || "127.0.0.1";
-const sbServerPort = urlParams.get("port") || "8080";
+const sbServerPort = urlParams.get("port") || "10767";
 const endScene = urlParams.get("scene") || "End Scene";
 //const overlay = urlParams.get("overlay") || ""; // For future use of overlay styles
 
@@ -36,12 +36,27 @@ const client = new StreamerbotClient({
 
 const countdownElement = document.getElementById('countdown');
 const dateContainer = document.getElementById('dateContainer');
-const dateContainer2 = document.getElementById('dateContainer2');
 const overlay = document.getElementById("overlay");
-let statusContainer = document.getElementById("statusContainer");
+const statusContainer = document.getElementById("statusContainer");
 const titleContainer = document.getElementById('titleContainer');
-const titleContainer2 = document.getElementById('titleContainer2');
 
+let countFont = countdownElement.style.fontFamily;
+let countSize = countdownElement.style.fontSize;
+let countColor = countdownElement.style.color;
+let countShadow = countdownElement.style.textShadow;
+let countFilter = countdownElement.style.filter;
+
+let dateFont = dateContainer.style.fontFamily;
+let dateSize = dateContainer.style.fontSize;
+let dateColor = dateContainer.style.color;
+let dateShadow = dateContainer.style.textShadow;
+let dateFilter = dateContainer.style.filter;
+
+let titleFont = titleContainer.style.fontFamily;
+let titleSize = titleContainer.style.fontSize;
+let titleColor = titleContainer.style.color;
+let titleShadow = titleContainer.style.textShadow;
+let titleFilter = titleContainer.style.filter;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////// ALL HELPER FUNCTIONS IN ALPHABETICAL ORDER //////////////////////////////////////////////
@@ -112,15 +127,13 @@ async function fetchTitle() {
 	console.log("Fetched Twitch Title:", response.variable.value);
 
   // Updates the title and date containers in the HTML with the fetched title and a static date
-  dateContainer.innerText = "12/12/2025";
-  dateContainer2.innerText = "12/12/2025";
+  dateContainer.innerText = new Date().toLocaleDateString({ month: "numeric", day: "numeric", year: "numeric" });
   titleContainer.innerText = response.variable.value;
-  titleContainer2.innerText = response.variable.value
 
 }
 
 // Calls the fetchTitle function every 30 seconds to update the Twitch title
-setInterval(fetchTitle, 30000);
+setInterval(fetchTitle, 15000);
 
 ///////////////////////////////////////////
 // PERFORMS CONNECTION STATUS UI UPDATES //
@@ -131,7 +144,7 @@ function setConnectionStatus(connected) {
   // Updates the status container's styles and text based on the connection status
 	if (connected) {
 		statusContainer.style.background = "#2FB774";
-		statusContainer.innerText = "Connected!";
+		statusContainer.innerText = "CONNECTED!";
 		statusContainer.style.opacity = 1;
 		setTimeout(() => {
 			statusContainer.style.transition = "all 2s ease";
@@ -140,7 +153,7 @@ function setConnectionStatus(connected) {
 	}
 	else {
 		statusContainer.style.background = "#D12025";
-		statusContainer.innerText = "Connecting...";
+		statusContainer.innerText = "CONNECTING...";
 		statusContainer.style.transition = "";
 		statusContainer.style.opacity = 1;
   }
@@ -148,7 +161,7 @@ function setConnectionStatus(connected) {
 
 
 //////////////////////////////////////
-// CREATES TIMER COUNTDOWN FUNCITON //
+// CREATES TIMER COUNTDOWN FUNCTION //
 //////////////////////////////////////
 
 function startTimer() {
@@ -171,4 +184,41 @@ function startTimer() {
 // Applies a vintage look to the text elements
 function vintageLook() {
 
+  countFont = "LCD-2N, sans-serif";
+  countSize = "60px";
+  countColor = "#f8e757";
+  countShadow = "0 0 15px #f908089c, 0 0 15px #f908089c,";
+  countFilter = "blur(1.5px)";
+
+  dateFont = "LCD-2N, sans-serif";
+  dateSize = "20px";
+  dateColor = "#f8e757";
+  dateShadow = "0 0 8px #f908089c, 0px 0px 8px #f908089c, 0px 0px 8px #f908089c";
+  dateFilter = "blur(1px)";
+
+  titleFont = "LCD-2N, sans-serif";
+  titleSize = "20px";
+  titleColor = "#f8e757";
+  titleShadow = "0 0 8px #f908089c, 0px 0px 8px #f908089c, 0px 0px 8px #f908089c";
+  titleFilter = "blur(1px)";
+
 }
+
+vintageLook();
+countFont = urlParams.get("font") || "LCD-2N, sans-serif";
+countSize = urlParams.get("size") || "60px";
+countColor = urlParams.get("color") || "#f8e757";
+countShadow = urlParams.get("shadow") || "0 0 15px #f908089c, 0 0 15px #f908089c,";
+countFilter = urlParams.get("filter") || "blur(1.5px)";
+
+dateFont = urlParams.get("font") || "LCD-2N, sans-serif";
+dateSize = urlParams.get("stampSize") || "20px";
+dateColor = urlParams.get("stampColor") || "#f8e757";
+dateShadow = urlParams.get("stampShadow") || "0 0 8px #f908089c, 0px 0px 8px #f908089c, 0px 0px 8px #f908089c";
+dateFilter = urlParams.get("stampFilter") || "blur(1px)";
+
+titleFont = dateFont;
+titleSize = dateSize;
+titleColor = dateColor;
+titleShadow = dateShadow;
+titleFilter =  dateFilter;

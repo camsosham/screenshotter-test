@@ -38,11 +38,11 @@ timer-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-	font-family: 'LCD-2N', sans-serif;
+	/*font-family: 'LCD-2N', sans-serif;
     font-size: 60px;
 	color: #f8e757;
 	filter: blur(1.5px);
-	text-shadow: 0px 0px 15px #f90808;
+	text-shadow: 0px 0px 15px #f90808;*/
 	
 }
 
@@ -55,18 +55,7 @@ timer-container {
 	font-size: 20px;
 	color: #f8e757;
 	filter: blur(1px);
-	text-shadow: 0px 0px 8px #f908089c;
-}
-
-#dateContainer2 {
-	position: absolute;   
-    bottom: 8.5%;
-    right: 4%;
-	transform: translate(-0%, -50%);
-	font-family: 'LCD-2N', sans-serif;
-	font-size: 20px;
-	color: #f90808;
-	filter: blur(3px);
+	text-shadow: 0px 0px 8px #f908089c, 0px 0px 8px #f908089c, 0px 0px 8px #f908089c	;
 }
 
 #overlay {
@@ -90,19 +79,7 @@ timer-container {
 	font-size: 20px;
 	color: #f8e757;
 	filter: blur(1px);
-	text-shadow: 0px 0px 8px #f908089c;
-	
-}
-
-#titleContainer2 {
-	position: absolute;   
-    bottom: 5%;
-    right: 4%;
-	transform: translate(-0%, -50%);
-	font-family: 'LCD-2N', sans-serif;
-	font-size: 20px;
-	color: #f90808;
-	filter: blur(3px);
+	text-shadow: 0px 0px 8px #f908089c, 0px 0px 8px #f908089c, 0px 0px 8px #f908089c;
 	
 }
 
