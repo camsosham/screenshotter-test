@@ -144,7 +144,7 @@ function setConnectionStatus(connected) {
   // Updates the status container's styles and text based on the connection status
 	if (connected) {
 		statusContainer.style.background = "#2FB774";
-		statusContainer.innerText = "CONNECTED!";
+		statusContainer.innerText = "CONNECTED";
 		statusContainer.style.opacity = 1;
 		setTimeout(() => {
 			statusContainer.style.transition = "all 2s ease";
