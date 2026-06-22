@@ -8,7 +8,7 @@ const urlParams = new URLSearchParams(queryString);
 
 const sbServerAddress = urlParams.get("address") || "127.0.0.1";
 const sbServerPort = urlParams.get("port") || "10767";
-const endScene = urlParams.get("scene") || "End Scene";
+const endScene = urlParams.get("scene") || "End";
 //const overlay = urlParams.get("overlay") || ""; // For future use of overlay styles
 
 // Creates Streamer.bot Client
@@ -112,6 +112,7 @@ client.on('Obs.SceneChanged', ({ event, data }) => {
   if (currentScene === endScene) {
 	console.log("End scene reached, starting timer.");
 	startTimer();
+  client.doAction("940208e0-9d69-4988-8256-d9d2a4437966");
   }
 
 });
@@ -149,6 +150,7 @@ function setConnectionStatus(connected) {
 		setTimeout(() => {
 			statusContainer.style.transition = "all 2s ease";
 			statusContainer.style.opacity = 0;
+      client.doAction("CLAP");
 		}, 10);
 	}
 	else {
@@ -158,6 +160,8 @@ function setConnectionStatus(connected) {
 		statusContainer.style.opacity = 1;
   }
 }
+
+
 
 
 //////////////////////////////////////
